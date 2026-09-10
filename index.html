@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Climate-Driven Cascading Failure Risk in Transmission Networks | DAFNI Fellowship</title>
+<meta name="description" content="Updates from Yitian Dai's DAFNI Fellowship on climate-driven cascading failure risk in electricity transmission networks, including the DAFNI demonstrator and the 2027 stakeholder workshop.">
+<meta name="theme-color" content="#3D1A5B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1E1A26;
+  --ink-soft:#4E4757;
+  --paper:#FBFAF7;
+  --paper-2:#F1EEF4;
+  --purple:#3D1A5B;
+  --purple-2:#6A3B8F;
+  --line:#D9D2E0;
+  --amber:#D68A1C;
+  --max:1120px;
+  --serif:"Source Serif 4",Georgia,serif;
+  --sans:"Source Sans 3",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:var(--sans);font-size:1.0625rem;line-height:1.55;color:var(--ink);background:var(--paper)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,4.5vw,3.25rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3vw,2.25rem)}
+h3{font-size:1.25rem}
+p{margin:0 0 1em}
+a{color:var(--purple-2)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--purple);color:#fff;padding:.5rem 1rem}
+.skip:focus{left:1rem;top:1rem;z-index:100}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px}
+.brand{display:flex;align-items:baseline;gap:.6rem;text-decoration:none;color:var(--ink);font-family:var(--serif);font-size:1.15rem}
+.brand span{font-family:var(--sans);font-size:.9rem;color:var(--ink-soft)}
+.links{display:flex;gap:1.4rem;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
+.links a:hover{color:var(--purple-2)}
+.menu{display:none;background:none;border:1px solid var(--line);padding:.4rem .7rem;font:inherit;cursor:pointer;border-radius:4px}
+@media (max-width:760px){
+  .menu{display:block}
+  .links{display:none;position:absolute;left:0;right:0;top:64px;flex-direction:column;gap:0;background:var(--paper);border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .links li a{display:block;padding:.85rem 1.25rem;border-top:1px solid var(--line)}
+}
+
+/* Hero */
+.hero{padding:4rem 0 3rem;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+.hero .kicker{color:var(--purple-2);font-weight:600;margin-bottom:.75rem}
+.hero .lede{font-size:1.2rem;color:var(--ink-soft);max-width:34em}
+.btn{display:inline-block;padding:.7rem 1.2rem;border-radius:4px;text-decoration:none;font-weight:600;border:1.5px solid var(--purple)}
+.btn.solid{background:var(--purple);color:#fff}
+.btn.ghost{color:var(--purple)}
+.btn + .btn{margin-left:.6rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.facts dt{font-size:.85rem;color:var(--ink-soft)}
+.facts dd{margin:0;font-weight:600}
+.hero figure{margin:0}
+.hero figcaption{font-size:.85rem;color:var(--ink-soft);margin-top:.5rem}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:2.5rem}.facts{grid-template-columns:1fr 1fr}}
+
+/* Partner strip */
+.partners{display:flex;flex-wrap:wrap;gap:2.5rem;align-items:center;justify-content:center;padding:1.5rem 0 2.5rem;border-bottom:1px solid var(--line)}
+.partners img{height:42px;width:auto;filter:grayscale(1);opacity:.75}
+.partners img:hover{filter:none;opacity:1}
+
+/* Sections */
+section{padding:4.5rem 0}
+section + section{border-top:1px solid var(--line)}
+.alt{background:var(--paper-2)}
+.section-head{max-width:40em;margin-bottom:2.5rem}
+.section-head p{color:var(--ink-soft);font-size:1.1rem}
+
+.aims{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 2.5rem;counter-reset:aim}
+.aims article{padding-top:1rem;border-top:3px solid var(--purple)}
+.aims article::before{counter-increment:aim;content:counter(aim,decimal-leading-zero);font-family:var(--serif);color:var(--purple-2);font-size:1.1rem;display:block;margin-bottom:.4rem}
+@media (max-width:700px){.aims{grid-template-columns:1fr}}
+
+/* Timeline */
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 1.75rem 1.75rem}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--purple);border:2px solid var(--paper)}
+.timeline li.planned::before{background:var(--paper);border-color:var(--purple)}
+.timeline time{display:block;font-size:.9rem;color:var(--ink-soft)}
+.timeline strong{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+.updated{font-size:.9rem;color:var(--ink-soft)}
+
+/* Platform */
+.platform{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem}
+.platform ul{padding-left:1.2rem}
+.platform li{margin-bottom:.6rem}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:grid;grid-template-columns:2.2rem 1fr;gap:.75rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
+.steps li span{font-family:var(--serif);color:var(--purple-2);font-size:1.3rem}
+.steps li strong{display:block}
+@media (max-width:800px){.platform{grid-template-columns:1fr}}
+
+/* Workshop */
+.ws-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0 2rem}
+.ws-meta div{background:var(--paper);border:1px solid var(--line);padding:1rem 1.2rem;border-radius:4px}
+.ws-meta div small{display:block;color:var(--ink-soft);font-size:.85rem}
+.ws-meta div strong{font-family:var(--serif);font-size:1.25rem;font-weight:600;display:block;margin:.2rem 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}
+.two ul{padding-left:1.2rem}
+@media (max-width:760px){.ws-meta,.two{grid-template-columns:1fr}}
+details{margin-top:2.5rem;border-top:1px solid var(--line)}
+summary{cursor:pointer;padding:1rem 0;font-family:var(--serif);font-size:1.25rem;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"Show";float:right;font-family:var(--sans);font-size:.95rem;color:var(--purple-2);font-weight:600}
+details[open] summary::after{content:"Hide"}
+.agenda{list-style:none;margin:0;padding:0 0 1rem}
+.agenda li{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding:.75rem 0;border-top:1px solid var(--line)}
+.agenda time{color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.agenda strong{display:block}
+@media (max-width:560px){.agenda li{grid-template-columns:1fr;gap:.2rem}}
+
+/* Outputs */
+.outputs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.outputs article{border:1px solid var(--line);padding:1.5rem;background:var(--paper);border-radius:4px;display:flex;flex-direction:column}
+.outputs article p{flex:1}
+.outputs small{color:var(--ink-soft)}
+.tag{display:inline-block;font-size:.85rem;color:var(--amber);font-weight:600}
+@media (max-width:760px){.outputs{grid-template-columns:1fr}}
+
+/* Contact / footer */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.contact address{font-style:normal;line-height:1.7}
+.contact .profiles a{margin-right:1.2rem}
+@media (max-width:700px){.contact{grid-template-columns:1fr}}
+footer{background:var(--purple);color:#EAE2F0;padding:3rem 0}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;align-items:flex-end}
+footer a{color:#fff}
+footer p{margin:0 0 .4em;max-width:36em}
+footer small{opacity:.8}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">DAFNI Fellowship <span>2026–2027</span></a>
+    <button class="menu" aria-expanded="false" aria-controls="links">Menu</button>
+    <ul class="links" id="links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#platform">DAFNI platform</a></li>
+      <li><a href="#workshop">Workshop</a></li>
+      <li><a href="#outputs">Outputs</a></li>
+      <li><a href="mailto:yitian.dai@manchester.ac.uk?subject=Expression%20of%20interest%20%E2%80%93%20DAFNI%20workshop">Express interest</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="wrap hero">
+  <div>
+    <p class="kicker">DAFNI Fellow · The University of Manchester</p>
+    <h1>Climate-Driven Cascading Failure Risk in Electricity Transmission Networks</h1>
+    <p class="lede">Bringing weather-driven vulnerability assessment and dynamic cascading failure simulation onto DAFNI, so that resilience evidence for the GB transmission system can be reproduced, examined and reused.</p>
+    <p><a class="btn solid" href="#workshop">Explore the workshop</a><a class="btn ghost" href="#updates">Fellowship updates</a></p>
+    <dl class="facts">
+      <div><dt>Fellow</dt><dd>Dr Yitian Dai</dd></div>
+      <div><dt>Duration</dt><dd>[Month] 2026 – [Month] 2027</dd></div>
+      <div><dt>Demonstrator</dt><dd>GB transmission network under windstorm scenarios</dd></div>
+    </dl>
+  </div>
+  <figure>
+    <svg viewBox="0 0 460 340" role="img" aria-labelledby="hero-t hero-d" width="100%">
+      <title id="hero-t">Cascading failure in a transmission network</title>
+      <desc id="hero-d">A stylised meshed transmission network. One weather-affected line trips, and the overload propagates along a chain of neighbouring lines while the rest of the network stays intact.</desc>
+      <g stroke="#D9D2E0" stroke-width="2" fill="none">
+        <path d="M60 60 L170 40 L290 55 L400 45"/>
+        <path d="M60 60 L90 170 L60 280"/>
+        <path d="M170 40 L200 150 L180 260"/>
+        <path d="M290 55 L310 160 L300 275"/>
+        <path d="M400 45 L390 170 L410 290"/>
+        <path d="M90 170 L200 150 L310 160 L390 170"/>
+        <path d="M60 280 L180 260 L300 275 L410 290"/>
+        <path d="M200 150 L300 275"/>
+        <path d="M90 170 L180 260"/>
+      </g>
+      <g stroke="#D68A1C" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M290 55 L310 160" stroke-dasharray="6 6"/>
+        <path d="M310 160 L200 150"/>
+        <path d="M200 150 L300 275"/>
+        <path d="M200 150 L180 260"/>
+      </g>
+      <g fill="#3D1A5B">
+        <circle cx="60" cy="60" r="6"/><circle cx="170" cy="40" r="6"/><circle cx="290" cy="55" r="6"/><circle cx="400" cy="45" r="6"/>
+        <circle cx="90" cy="170" r="6"/><circle cx="200" cy="150" r="6"/><circle cx="310" cy="160" r="6"/><circle cx="390" cy="170" r="6"/>
+        <circle cx="60" cy="280" r="6"/><circle cx="180" cy="260" r="6"/><circle cx="300" cy="275" r="6"/><circle cx="410" cy="290" r="6"/>
+      </g>
+      <g fill="#D68A1C"><circle cx="310" cy="160" r="9"/><circle cx="200" cy="150" r="9"/></g>
+      <g font-family="Source Sans 3, sans-serif" font-size="13" fill="#4E4757">
+        <text x="315" y="100">Weather-driven trip</text>
+        <text x="60" y="325">Overload propagation</text>
+        <line x1="150" y1="320" x2="185" y2="320" stroke="#D68A1C" stroke-width="3"/>
+      </g>
+    </svg>
+    <figcaption>A single weather-driven outage redistributes power flow and can trigger a chain of overloads. The Fellowship quantifies where and when this risk concentrates.</figcaption>
+  </figure>
+</div>
+
+<div class="wrap partners">
+  <a href="https://www.dafni.ac.uk/who-we-are/dafni-fellowship-programme/"><img src="assets/images/dafni-logo.png" alt="DAFNI, Data and Analytics Facility for National Infrastructure"></a>
+  <a href="https://www.ukri.org/"><img src="assets/images/ukri-logo.png" alt="UK Research and Innovation"></a>
+  <a href="https://www.manchester.ac.uk/"><img src="assets/images/manchester-logo.png" alt="The University of Manchester"></a>
+  <a href="https://www.supergen-networks.org.uk/"><img src="assets/images/supergen-logo.png" alt="Supergen Energy Networks Hub"></a>
+</div>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>From network models to resilience evidence people can act on</h2>
+      <p>Extreme weather is now the leading cause of large power interruptions in Great Britain, and a decarbonising system with renewable generation sited at the network periphery changes how failures spread. The Fellowship asks how weather, network topology and protection behaviour combine to produce cascading risk, and how that evidence can be shared with operators and planners.</p>
+    </div>
+    <div class="aims">
+      <article><h3>Build the demonstrator</h3><p>Deploy a containerised cascading failure workflow on DAFNI that couples windstorm hazard fields with an open GB transmission network model and dynamic protection logic.</p></article>
+      <article><h3>Map climate-driven vulnerability</h3><p>Translate reanalysis and climate projection data into line-level outage probabilities, and identify the corridors and cut sections where risk concentrates.</p></article>
+      <article><h3>Connect infrastructure models</h3><p>Explore how transmission outage scenarios can feed other DAFNI workflows to study interdependencies with distribution networks, transport and communications.</p></article>
+      <article><h3>Translate evidence into practice</h3><p>Use the stakeholder workshop to gather requirements from network operators and regulators, and turn them into reusable workflows and technical recommendations.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="updates" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Updates and milestones</h2>
+      <p class="updated">Last updated: [date]</p>
+    </div>
+    <ol class="timeline">
+      <li><time>[Month] 2026</time><strong>Fellowship begins</strong><p>Fellows Plan agreed with DAFNI; data and model inventory started.</p></li>
+      <li><time>[Month] 2026</time><strong>GB network model onboarded</strong><p>Open GB transmission dataset uploaded to DAFNI with documented metadata.</p></li>
+      <li class="planned"><time>[Month] 2026</time><strong>Windstorm scenario workflow</strong><p>First containerised run of the weather-to-outage pipeline on the platform.</p></li>
+      <li class="planned"><time>March 2027</time><strong>Stakeholder workshop</strong><p>Co-located with the Supergen Energy Networks Hub assembly.</p></li>
+      <li class="planned"><time>[Month] 2027</time><strong>White paper and guide published</strong><p>Findings, DAFNI experience and technical recommendations released.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="platform">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>A reproducible, traceable resilience workflow</h2>
+      <p>DAFNI is the shared environment in which the demonstrator's data, models, assumptions and outputs can be documented, tested and reused across organisations.</p>
+    </div>
+    <div class="platform">
+      <div>
+        <ul>
+          <li><strong>Data:</strong> open GB transmission network topology and parameters, ERA5 reanalysis and UKCP18 wind fields, and documented historical storm events.</li>
+          <li><strong>Models:</strong> a weather-to-outage fragility model, followed by a dynamic cascading failure simulator with protection and remedial action logic.</li>
+          <li><strong>Model connection:</strong> outage scenarios exposed as outputs that downstream infrastructure-impact workflows on DAFNI can consume.</li>
+          <li><strong>Legacy:</strong> containerised workflows, metadata, notebooks and guidance designed for FAIR sharing and long-term reuse.</li>
+        </ul>
+        <p><a href="https://www.dafni.ac.uk/who-we-are/dafni-platform/">Learn about the DAFNI platform</a></p>
+      </div>
+      <ol class="steps">
+        <li><span>1</span><div><strong>Onboard</strong>GB network data and weather scenario inputs</div></li>
+        <li><span>2</span><div><strong>Run</strong>Containerised windstorm-to-cascade workflow</div></li>
+        <li><span>3</span><div><strong>Interrogate</strong>Vulnerability maps, cascade sizes and critical corridors</div></li>
+        <li><span>4</span><div><strong>Connect</strong>Cross-sector impacts through linked DAFNI models</div></li>
+        <li><span>5</span><div><strong>Share</strong>Documented outputs, notebooks and guidance</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="workshop" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Stakeholder workshop: climate resilience evidence for the GB transmission system</h2>
+      <p>The workshop will bring together transmission and distribution operators, the regulator, government analysts and researchers to test how weather-driven cascading failure evidence can support planning and operational decisions. It will be co-located with the Supergen Energy Networks Hub assembly.</p>
+    </div>
+    <div class="ws-meta">
+      <div><small>Date</small><strong>March 2027</strong>Final date to be confirmed</div>
+      <div><small>Location</small><strong>[Venue]</strong>In person with hybrid access</div>
+      <div><small>Participants</small><strong>[30–40] people</strong>Operators, regulators, researchers and DAFNI users</div>
+    </div>
+    <p><a class="btn solid" href="mailto:yitian.dai@manchester.ac.uk?subject=Expression%20of%20interest%20%E2%80%93%20DAFNI%20workshop&body=Dear%20Yitian%2C%0A%0AI%20would%20like%20to%20express%20my%20interest%20in%20the%20DAFNI%20workshop%20on%20climate-driven%20cascading%20failure%20risk.%0A%0AName%3A%0AOrganisation%3A%0ARole%2Farea%20of%20interest%3A%0A">Register an expression of interest</a><a class="btn ghost" href="#agenda">View the proposed agenda</a></p>
+    <div class="two">
+      <div>
+        <h3>Workshop aims</h3>
+        <ul>
+          <li>Identify what operators and regulators require from climate resilience evidence before it can inform investment and operational decisions.</li>
+          <li>Test the demonstrator's assumptions, uncertainty representation and usability with practitioners.</li>
+          <li>Define collaborative case studies on real network corridors.</li>
+          <li>Agree a follow-on research roadmap and recommendations for DAFNI.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Who should take part?</h3>
+        <p>National Grid Electricity Transmission, SP Energy Networks, SSEN Transmission, the National Energy System Operator, Ofgem, DESNZ, distribution network operators, the Met Office, researchers in power systems and climate science, and members of the DAFNI and Supergen Energy Networks communities.</p>
+      </div>
+    </div>
+    <details id="agenda">
+      <summary>Proposed programme</summary>
+      <ol class="agenda">
+        <li><time>09:00–09:30</time><div><strong>Welcome and context</strong>Why weather-driven cascading risk matters for a decarbonising GB system.</div></li>
+        <li><time>09:30–10:30</time><div><strong>Short invited talks</strong>Operational and planning cases where resilience evidence was hard to interpret or act upon.</div></li>
+        <li><time>10:30–11:00</time><div><strong>DAFNI demonstrator</strong>Weather-to-outage modelling, cascade simulation and what the outputs mean for decisions.</div></li>
+        <li><time>11:00–12:00</time><div><strong>Breakout 1: evidence for decisions</strong>Uncertainty communication, data access, model credibility and barriers to adoption.</div></li>
+        <li><time>12:00–13:00</time><div><strong>Lunch and networking</strong></div></li>
+        <li><time>13:00–14:00</time><div><strong>Hands-on DAFNI session</strong>Guided interaction with the workflows; no previous DAFNI experience assumed.</div></li>
+        <li><time>14:00–15:15</time><div><strong>Breakout 2: connected infrastructure</strong>What changes when transmission outages cascade into other sectors?</div></li>
+        <li><time>15:15–15:45</time><div><strong>Synthesis and roadmap</strong>Consolidate findings, white paper priorities and collaboration opportunities.</div></li>
+        <li><time>15:45–16:00</time><div><strong>Close and next steps</strong></div></li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<section id="outputs">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Fellowship outputs</h2>
+      <p>The primary output will be a white paper bringing together the demonstrator, stakeholder evidence, experience of DAFNI and prioritised technical recommendations.</p>
+    </div>
+    <div class="outputs">
+      <article><span class="tag">Poster</span><h3>DAFNI Fellowship poster</h3><p>Climate-driven cascading failure risk in electricity transmission networks.</p><a href="assets/resources/poster.pdf">View poster (PDF)</a></article>
+      <article><span class="tag">Planned output</span><h3>Practical guide</h3><p>Running weather-driven cascading failure workflows on DAFNI.</p><small>Coming in 2027</small></article>
+      <article><span class="tag">Planned output</span><h3>Fellowship white paper</h3><p>Research findings, workshop outcomes and recommendations for DAFNI.</p><small>Coming in 2027</small></article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap contact">
+    <div>
+      <h2>Discuss the research or join the workshop</h2>
+      <p>Expressions of interest are welcome from network operators, regulators, public bodies, researchers and DAFNI users.</p>
+    </div>
+    <address>
+      <strong>Dr Yitian Dai</strong><br>
+      Department of Electrical and Electronic Engineering<br>
+      The University of Manchester<br>
+      <a href="mailto:yitian.dai@manchester.ac.uk">yitian.dai@manchester.ac.uk</a>
+      <p class="profiles"><a href="[ORCID URL]">ORCID</a><a href="[University profile URL]">University profile</a><a href="[GitHub URL]">GitHub</a></p>
+    </address>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>DAFNI Fellowship 2026–2027</strong></p>
+      <p>Climate-driven cascading failure risk in electricity transmission networks. Research led by Yitian Dai at The University of Manchester.</p>
+      <small>DAFNI is a programme within the STFC Scientific Computing Department.</small>
+    </div>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  const btn=document.querySelector('.menu'),links=document.getElementById('links');
+  btn.addEventListener('click',()=>{const o=links.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+  links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');btn.setAttribute('aria-expanded',false)}});
+</script>
+</body>
+</html>
