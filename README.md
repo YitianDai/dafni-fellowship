@@ -11,7 +11,7 @@ Single-page site for the Fellowship, served with GitHub Pages. No build step.
 ## Before publishing
 
 - Replace the `[bracketed]` placeholders in `index.html` (dates, venue, participant numbers, ORCID and profile URLs).
-- Add logos to `assets/images/`: `dafni-logo.png`, `ukri-logo.png`, `manchester-logo.png`, `supergen-logo.png` (roughly 42 px tall when displayed; PNG with transparent background works best).
+- Add logos to `assets/images/`: `dafni-logo.png`, `ukri-logo.svg`, `manchester-logo.png`, `supergen-logo.svg` (roughly 42 px tall when displayed; PNG with transparent background works best).
 - Add the poster as `assets/resources/poster.pdf`, or remove that card.
 - Check the email address in the nav, workshop and contact sections.
 
