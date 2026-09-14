@@ -122,6 +122,9 @@ details[open] summary::after{content:"Hide"}
 .agenda li{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding:.75rem 0;border-top:1px solid var(--line)}
 .agenda time{color:var(--ink-soft);font-variant-numeric:tabular-nums}
 .agenda strong{display:block}
+.agenda .sub{margin:.6rem 0 0;padding-left:1.2rem}
+.agenda .sub li{display:list-item;grid-template-columns:none;padding:.25rem 0;border:0}
+.agenda .sub strong{display:inline}
 @media (max-width:560px){.agenda li{grid-template-columns:1fr;gap:.2rem}}
 
 /* Outputs */
@@ -272,13 +275,31 @@ footer small{opacity:.8}
     <details id="agenda">
       <summary>Proposed programme (half day, followed by lunch)</summary>
       <ol class="agenda">
-        <li><time>09:00–09:15</time><div><strong>Welcome and framing</strong>Why weather-driven cascading risk matters for a decarbonising GB system, and what we want from the day.</div></li>
-        <li><time>09:15–10:00</time><div><strong>The demonstrator in three cases</strong>A recent storm replayed on the GB transmission model and compared with what happened; the same storm moved and intensified to show where risk concentrates; and one storm under two interventions, reduced flows on an exposed boundary against reinforcement of specific circuits. A short live run on DAFNI closes the session.</div></li>
-        <li><time>10:00–11:00</time><div><strong>Invited perspectives</strong>Short talks from a transmission planner, a storm data provider, a regulatory voice and DAFNI: how weather risk is assessed today and what evidence a decision would need.</div></li>
+        <li><time>09:00–09:15</time><div><strong>Welcome and framing</strong>Why weather-driven cascading risk matters for a decarbonising GB system; the two questions the day is designed to answer (is the evidence credible and usable, and what would a decision need); how the morning runs and how participants' views will be captured for the white paper.</div></li>
+        <li><time>09:15–10:00</time><div><strong>The demonstrator in three cases</strong>Results only, no model walkthrough. Each case is presented in about ten minutes with the same GB map and the same set of figures.
+          <ul class="sub">
+            <li><strong>Case 1, a storm replayed.</strong> A recent named windstorm on the GB transmission model (PyPSA-GB, ETYS 2023): the gust footprint hour by hour, the circuits exposed, the outages and any overload chain the model produces, and a side-by-side comparison with what was recorded on the day. The question for the room: does the model reproduce what happened, and what does it get wrong?</li>
+            <li><strong>Case 2, the same storm moved and intensified.</strong> The footprint shifted along plausible alternative tracks and scaled to present-day and future return levels, giving a map of where outage and cascading risk concentrates across the network and which corridors carry it. The question: is this where you would expect the risk, and is the uncertainty shown in a way you could use?</li>
+            <li><strong>Case 3, one storm under two interventions.</strong> The base case rerun with (a) an operational measure, pre-storm reduction of flows on the exposed boundary, and (b) an investment measure, reinforcement or undergrounding of the specific circuits identified in Case 2, with the change in outage and customer impact for each. The question: would either result change a decision, and what is missing before it could?</li>
+            <li><strong>Live run on DAFNI (5 min).</strong> One parameter changed (storm offset or intensity), the workflow rerun on the platform, and the output map returned, to show the work is reproducible and open to others.</li>
+          </ul></div></li>
+        <li><time>10:00–11:00</time><div><strong>Invited perspectives</strong>Four short talks of about twelve minutes, each framed around a problem rather than an organisation.
+          <ul class="sub">
+            <li><strong>Transmission planning and operation.</strong> How weather-related risk to the transmission system is assessed today, in investment planning and in the control room ahead of a storm, and where current evidence falls short.</li>
+            <li><strong>Storm data and future climate.</strong> What storm footprint, reanalysis and climate projection data exist for GB, how reliable they are for engineering use, and what a network model should and should not ask of them.</li>
+            <li><strong>Regulation and policy.</strong> What evidence a resilience investment case or an operational standard needs to satisfy, how uncertainty is treated, and what would make model-based evidence acceptable.</li>
+            <li><strong>DAFNI.</strong> The platform, how workflows and data are shared and reproduced, and what other infrastructure models it connects to.</li>
+          </ul></div></li>
         <li><time>11:00–11:15</time><div><strong>Break</strong></div></li>
-        <li><time>11:15–12:15</time><div><strong>Structured critique at tables</strong>Each table receives the three cases as a printed result pack and works through a short set of questions: is this credible, what decision could it inform, what would need to change, and what data would improve it.</div></li>
-        <li><time>12:15–12:45</time><div><strong>Report back and synthesis</strong>Consolidate the tables' findings into white paper priorities and follow-on collaborations.</div></li>
-        <li><time>12:45–13:00</time><div><strong>Close and next steps</strong></div></li>
+        <li><time>11:15–12:15</time><div><strong>Structured critique at tables</strong>Mixed tables of operators, regulators, data providers and researchers, each with a facilitator and a printed pack containing the three cases. Forty-five minutes of discussion guided by a one-page worksheet, then a short written summary per table.
+          <ul class="sub">
+            <li>Credibility: which assumptions, inputs or results do you not believe, and why?</li>
+            <li>Use: which decision, planning or operational, could each case inform, and in what form would the result need to be presented?</li>
+            <li>Gaps: what would have to be added, changed or validated before you would act on it?</li>
+            <li>Data: what data or experience does your organisation hold that would change these results, and could it be shared?</li>
+          </ul></div></li>
+        <li><time>12:15–12:45</time><div><strong>Report back and synthesis</strong>Each table reports in three minutes; the facilitators consolidate the points into an agreed list of requirements, barriers and priorities that will structure the white paper, and identify follow-on case studies with named organisations.</div></li>
+        <li><time>12:45–13:00</time><div><strong>Close and next steps</strong>What happens to the material gathered, the timetable for the white paper and technical guide, how to access the DAFNI workflow, and lunch.</div></li>
       </ol>
     </details>
   </div>
