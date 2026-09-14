@@ -217,7 +217,7 @@ footer small{opacity:.8}
       <li><time>April 2026</time><strong>Fellowship begins</strong><p>Fellows Plan agreed with DAFNI; data and model inventory started.</p></li>
       <li><time>August 2026</time><strong>GB network model onboarded</strong><p>Open GB transmission dataset uploaded to DAFNI with documented metadata.</p></li>
       <li class="planned"><time>November 2026</time><strong>Windstorm scenario workflow</strong><p>First containerised run of the weather-to-outage pipeline on the platform.</p></li>
-      <li class="planned"><time>March 2027</time><strong>Stakeholder workshop</strong><p>Co-located with the Supergen Energy Networks Hub assembly.</p></li>
+      <li class="planned"><time>March 2027</time><strong>Stakeholder workshop</strong><p>Co-organised with the Supergen Energy Networks Hub, alongside its assembly.</p></li>
       <li class="planned"><time>July 2027</time><strong>White paper and guide published</strong><p>Findings, DAFNI experience and technical recommendations released.</p></li>
     </ol>
   </div>
@@ -226,25 +226,26 @@ footer small{opacity:.8}
 <section id="platform">
   <div class="wrap">
     <div class="section-head">
-      <h2>A reproducible, traceable resilience workflow</h2>
-      <p>DAFNI is the shared environment in which the demonstrator's data, models, assumptions and outputs can be documented, tested and reused across organisations.</p>
+      <h2>What goes onto DAFNI</h2>
+      <p>DAFNI is where the whole chain, from weather data to network outages, is kept in one place so that anyone can rerun it, check the assumptions and build on it.</p>
     </div>
     <div class="platform">
       <div>
         <ul>
-          <li><strong>Data:</strong> the open GB transmission network model (PyPSA-GB, ETYS 2023); ERA5 hourly wind gust fields corrected against Met Office station observations; the XWS storm catalogue for validation; UKCP18 regional projections for future change; and documented recent storms such as Arwen and Eunice.</li>
-          <li><strong>Models:</strong> a weather-to-outage fragility model applied to each circuit, a stochastic storm set for present and future climate, and a cascading failure simulator with protection and remedial action logic.</li>
-          <li><strong>Model connection:</strong> outage scenarios exposed as outputs that downstream infrastructure-impact workflows on DAFNI can consume.</li>
-          <li><strong>Legacy:</strong> containerised workflows, metadata, notebooks and guidance designed for FAIR sharing and long-term reuse.</li>
+          <li><strong>Network:</strong> the open GB transmission model (PyPSA-GB, based on ETYS 2023).</li>
+          <li><strong>Weather:</strong> hourly wind gusts from ERA5, corrected against Met Office station records, for recent storms such as Arwen and Eunice and for the long record since 1979; UKCP18 projections to see how storm risk may change.</li>
+          <li><strong>Models:</strong> a fragility model that turns gusts into the chance of each circuit failing, a set of synthetic storms for today's and future climate, and a cascading failure simulator that follows the overloads and protection actions that follow the first outages.</li>
+          <li><strong>Outputs:</strong> outage scenarios in a form that other DAFNI models, for example transport or water, can pick up to study knock-on effects.</li>
+          <li><strong>Documentation:</strong> the workflow as containers, with notebooks and a guide, so it can be reused after the Fellowship ends.</li>
         </ul>
         <p><a href="https://www.dafni.ac.uk/who-we-are/dafni-platform/">Learn about the DAFNI platform</a></p>
       </div>
       <ol class="steps">
-        <li><span>1</span><div><strong>Onboard</strong>GB network data and weather scenario inputs</div></li>
-        <li><span>2</span><div><strong>Run</strong>Containerised windstorm-to-cascade workflow</div></li>
-        <li><span>3</span><div><strong>Interrogate</strong>Vulnerability maps, cascade sizes and critical corridors</div></li>
-        <li><span>4</span><div><strong>Connect</strong>Cross-sector impacts through linked DAFNI models</div></li>
-        <li><span>5</span><div><strong>Share</strong>Documented outputs, notebooks and guidance</div></li>
+        <li><span>1</span><div><strong>Load</strong>The GB network and the storm data</div></li>
+        <li><span>2</span><div><strong>Run</strong>Storm to outages to cascade, in one workflow</div></li>
+        <li><span>3</span><div><strong>Look</strong>Maps of where the risk sits and how large the cascades get</div></li>
+        <li><span>4</span><div><strong>Link</strong>Pass the outages to other infrastructure models</div></li>
+        <li><span>5</span><div><strong>Reuse</strong>Results, notebooks and guide, open to others</div></li>
       </ol>
     </div>
   </div>
@@ -254,7 +255,7 @@ footer small{opacity:.8}
   <div class="wrap">
     <div class="section-head">
       <h2>Stakeholder workshop: climate resilience evidence for the GB transmission system</h2>
-      <p>The workshop will bring together transmission and distribution operators, the regulator, government analysts and researchers to test how weather-driven cascading failure evidence can support planning and operational decisions. It will be co-located with the Supergen Energy Networks Hub assembly.</p>
+      <p>The workshop will bring together transmission and distribution operators, the regulator, government analysts and researchers to test how weather-driven cascading failure evidence can support planning and operational decisions. It is co-organised with the Supergen Energy Networks Hub and held alongside the Hub assembly.</p>
     </div>
     <div class="ws-meta">
       <div><small>Date</small><strong>March 2027</strong>Final date to be confirmed</div>
