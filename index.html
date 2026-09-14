@@ -177,39 +177,8 @@ footer small{opacity:.8}
     </dl>
   </div>
   <figure>
-    <svg viewBox="0 0 460 340" role="img" aria-labelledby="hero-t hero-d" width="100%">
-      <title id="hero-t">Cascading failure in a transmission network</title>
-      <desc id="hero-d">A stylised meshed transmission network. One weather-affected line trips, and the overload propagates along a chain of neighbouring lines while the rest of the network stays intact.</desc>
-      <g stroke="#D9D2E0" stroke-width="2" fill="none">
-        <path d="M60 60 L170 40 L290 55 L400 45"/>
-        <path d="M60 60 L90 170 L60 280"/>
-        <path d="M170 40 L200 150 L180 260"/>
-        <path d="M290 55 L310 160 L300 275"/>
-        <path d="M400 45 L390 170 L410 290"/>
-        <path d="M90 170 L200 150 L310 160 L390 170"/>
-        <path d="M60 280 L180 260 L300 275 L410 290"/>
-        <path d="M200 150 L300 275"/>
-        <path d="M90 170 L180 260"/>
-      </g>
-      <g stroke="#D68A1C" stroke-width="3" fill="none" stroke-linecap="round">
-        <path d="M290 55 L310 160" stroke-dasharray="6 6"/>
-        <path d="M310 160 L200 150"/>
-        <path d="M200 150 L300 275"/>
-        <path d="M200 150 L180 260"/>
-      </g>
-      <g fill="#3D1A5B">
-        <circle cx="60" cy="60" r="6"/><circle cx="170" cy="40" r="6"/><circle cx="290" cy="55" r="6"/><circle cx="400" cy="45" r="6"/>
-        <circle cx="90" cy="170" r="6"/><circle cx="200" cy="150" r="6"/><circle cx="310" cy="160" r="6"/><circle cx="390" cy="170" r="6"/>
-        <circle cx="60" cy="280" r="6"/><circle cx="180" cy="260" r="6"/><circle cx="300" cy="275" r="6"/><circle cx="410" cy="290" r="6"/>
-      </g>
-      <g fill="#D68A1C"><circle cx="310" cy="160" r="9"/><circle cx="200" cy="150" r="9"/></g>
-      <g font-family="Source Sans 3, sans-serif" font-size="13" fill="#4E4757">
-        <text x="315" y="100">Weather-driven trip</text>
-        <text x="60" y="325">Overload propagation</text>
-        <line x1="150" y1="320" x2="185" y2="320" stroke="#D68A1C" stroke-width="3"/>
-      </g>
-    </svg>
-    <figcaption>A single weather-driven outage redistributes power flow and can trigger a chain of overloads. The Fellowship quantifies where and when this risk concentrates.</figcaption>
+    <img src="assets/images/gb-footprint.jpg" alt="Map of the GB transmission network with a windstorm footprint sweeping across England and Wales" style="width:100%;height:auto;border-radius:6px">
+    <figcaption>A windstorm footprint over the GB transmission model (<a href="https://github.com/andrewlyden/PyPSA-GB">PyPSA-GB</a>, <a href="https://www.neso.energy/publications/electricity-ten-year-statement-etys">ETYS 2023</a>). Weather-driven outages redistribute power flow and can trigger a chain of overloads; the Fellowship quantifies where and when this risk concentrates.</figcaption>
   </figure>
 </div>
 
