@@ -229,8 +229,8 @@ footer small{opacity:.8}
     <div class="platform">
       <div>
         <ul>
-          <li><strong>Data:</strong> open GB transmission network topology and parameters, ERA5 reanalysis and UKCP18 wind fields, and documented historical storm events.</li>
-          <li><strong>Models:</strong> a weather-to-outage fragility model, followed by a dynamic cascading failure simulator with protection and remedial action logic.</li>
+          <li><strong>Data:</strong> the open GB transmission network model (PyPSA-GB, ETYS 2023); ERA5 hourly wind gust fields corrected against Met Office station observations; the XWS storm catalogue for validation; UKCP18 regional projections for future change; and documented recent storms such as Arwen and Eunice.</li>
+          <li><strong>Models:</strong> a weather-to-outage fragility model applied to each circuit, a stochastic storm set for present and future climate, and a cascading failure simulator with protection and remedial action logic.</li>
           <li><strong>Model connection:</strong> outage scenarios exposed as outputs that downstream infrastructure-impact workflows on DAFNI can consume.</li>
           <li><strong>Legacy:</strong> containerised workflows, metadata, notebooks and guidance designed for FAIR sharing and long-term reuse.</li>
         </ul>
@@ -274,17 +274,15 @@ footer small{opacity:.8}
       </div>
     </div>
     <details id="agenda">
-      <summary>Proposed programme</summary>
+      <summary>Proposed programme (half day, followed by lunch)</summary>
       <ol class="agenda">
-        <li><time>09:00–09:30</time><div><strong>Welcome and context</strong>Why weather-driven cascading risk matters for a decarbonising GB system.</div></li>
-        <li><time>09:30–10:30</time><div><strong>Short invited talks</strong>Operational and planning cases where resilience evidence was hard to interpret or act upon.</div></li>
-        <li><time>10:30–11:00</time><div><strong>DAFNI demonstrator</strong>Weather-to-outage modelling, cascade simulation and what the outputs mean for decisions.</div></li>
-        <li><time>11:00–12:00</time><div><strong>Breakout 1: evidence for decisions</strong>Uncertainty communication, data access, model credibility and barriers to adoption.</div></li>
-        <li><time>12:00–13:00</time><div><strong>Lunch and networking</strong></div></li>
-        <li><time>13:00–14:00</time><div><strong>Hands-on DAFNI session</strong>Guided interaction with the workflows; no previous DAFNI experience assumed.</div></li>
-        <li><time>14:00–15:15</time><div><strong>Breakout 2: connected infrastructure</strong>What changes when transmission outages cascade into other sectors?</div></li>
-        <li><time>15:15–15:45</time><div><strong>Synthesis and roadmap</strong>Consolidate findings, white paper priorities and collaboration opportunities.</div></li>
-        <li><time>15:45–16:00</time><div><strong>Close and next steps</strong></div></li>
+        <li><time>09:00–09:15</time><div><strong>Welcome and framing</strong>Why weather-driven cascading risk matters for a decarbonising GB system, and what we want from the day.</div></li>
+        <li><time>09:15–10:00</time><div><strong>The demonstrator in three cases</strong>A recent storm replayed on the GB transmission model and compared with what happened; the same storm moved and intensified to show where risk concentrates; and one storm under two interventions, reduced flows on an exposed boundary against reinforcement of specific circuits. A short live run on DAFNI closes the session.</div></li>
+        <li><time>10:00–11:00</time><div><strong>Invited perspectives</strong>Short talks from a transmission planner, a storm data provider, a regulatory voice and DAFNI: how weather risk is assessed today and what evidence a decision would need.</div></li>
+        <li><time>11:00–11:15</time><div><strong>Break</strong></div></li>
+        <li><time>11:15–12:15</time><div><strong>Structured critique at tables</strong>Each table receives the three cases as a printed result pack and works through a short set of questions: is this credible, what decision could it inform, what would need to change, and what data would improve it.</div></li>
+        <li><time>12:15–12:45</time><div><strong>Report back and synthesis</strong>Consolidate the tables' findings into white paper priorities and follow-on collaborations.</div></li>
+        <li><time>12:45–13:00</time><div><strong>Close and next steps</strong></div></li>
       </ol>
     </details>
   </div>
