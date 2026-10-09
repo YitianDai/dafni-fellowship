@@ -212,7 +212,7 @@ footer small{opacity:.8}
   <div class="wrap">
     <div class="section-head">
       <h2>Updates and milestones</h2>
-      <p class="updated">Last updated: 14 September 2026</p>
+      <p class="updated">Last updated: <span id="last-updated">9 October 2026</span></p>
     </div>
     <ol class="timeline">
       <li><time>April 2026</time><strong>Fellowship begins</strong><p>Fellows Plan agreed with DAFNI; data and model inventory started.</p></li>
@@ -354,6 +354,15 @@ footer small{opacity:.8}
   const btn=document.querySelector('.menu'),links=document.getElementById('links');
   btn.addEventListener('click',()=>{const o=links.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
   links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');btn.setAttribute('aria-expanded',false)}});
+
+// Show the date the page was last published, taken from the server's Last-Modified header.
+(function(){
+  var el=document.getElementById('last-updated'); if(!el) return;
+  var d=new Date(document.lastModified);
+  if(!isNaN(d) && d.getFullYear()>2025){
+    el.textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  }
+})();
 </script>
 </body>
 </html>
