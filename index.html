@@ -119,6 +119,8 @@ summary{cursor:pointer;padding:1rem 0;font-family:var(--serif);font-size:1.25rem
 summary::-webkit-details-marker{display:none}
 summary::after{content:"Show";float:right;font-family:var(--sans);font-size:.95rem;color:var(--purple-2);font-weight:600}
 details[open] summary::after{content:"Hide"}
+.programme{margin-top:2.5rem;border-top:1px solid var(--line)}
+.programme-title{padding:1rem 0;margin:0;font-family:var(--serif);font-size:1.25rem;font-weight:600}
 .agenda{list-style:none;margin:0;padding:0 0 1rem}
 .agenda li{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding:.75rem 0;border-top:1px solid var(--line)}
 .agenda time{color:var(--ink-soft);font-variant-numeric:tabular-nums}
@@ -275,8 +277,8 @@ footer small{opacity:.8}
         <p>The workshop's output is the participants' reaction to the evidence, which will shape the closing white paper.</p>
       </div>
     </div>
-    <details id="agenda">
-      <summary>Proposed programme (afternoon of Monday 22 March 2027)</summary>
+    <div id="agenda" class="programme">
+      <h3 class="programme-title">Proposed programme (afternoon of Monday 22 March 2027)</h3>
       <ol class="agenda">
         <li><time>13:00–13:10</time><div><strong>Welcome</strong></div></li>
         <li><time>13:10–14:30</time><div><strong>Perspectives on storm risk</strong>Short talks on how we observe, model and forecast extreme winds; how NGET and DNOs prepare for severe storms and where today's tools fall short; and how DAFNI helps researchers and industry share models and reuse each other's work.</div></li>
@@ -285,7 +287,7 @@ footer small{opacity:.8}
         <li><time>15:20–16:20</time><div><strong>Your turn: problem solving session</strong>Work in small groups or on your own on real problems drawn from the afternoon, such as what evidence you would trust, what is missing and what would change a decision, then share your key ideas with the room.</div></li>
         <li><time>16:20–17:00</time><div><strong>Wrap up and next steps</strong>How your input feeds into the Fellowship white paper, and how to stay involved.</div></li>
       </ol>
-    </details>
+    </div>
   </div>
 </section>
 
