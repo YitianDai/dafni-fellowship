@@ -38,6 +38,10 @@ DAFNI_DATA=test STORM=Eunice2022 FIGURE_SAMPLE=3 python models/dafni_entry.py fi
 
 `.github/workflows/dafni-images.yml` (repository root) builds the three images on GitHub Actions on every push to `main` touching `demonstrator/` (or by hand through Actions, Run workflow). Each run attaches `wind_damage-image.tar.gz`, `storm_cascade-image.tar.gz` and `figures-image.tar.gz`; download them from the run page.
 
+## End-to-end container test
+
+The same Actions workflow then runs the three images as containers in the DAFNI way (parameters as environment variables, inputs mounted at `/data/inputs`, outputs collected from `/data/outputs`) on Storm Eunice, wind damage seed 42 and cascade sample 297, and `dafni/test/compare_outputs.py` checks that the container outputs reproduce the reference results committed in `results/Eunice2022/` (same sampled failures, same hourly cascade table, figures present). A green "End-to-end container test" job means the images behave exactly as the local run; the container outputs are attached to the run as `container-test-outputs`.
+
 ## Uploading to DAFNI
 
 1. Data: upload `data/network` as one dataset and `data/era5` as another (title, description and licence filled in on the platform).

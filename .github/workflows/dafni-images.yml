@@ -1,6 +1,8 @@
-# Builds the three DAFNI model images and attaches them to the run as downloadable artifacts.
+# Builds the three DAFNI model images, attaches them to the run as downloadable artifacts, then runs the
+# three containers end to end (as DAFNI would: parameters as environment variables, inputs under /data/inputs,
+# outputs under /data/outputs) on Storm Eunice and checks the outputs against the committed reference results.
 # No local Docker needed: push to main (or run the workflow by hand under Actions), then download
-# <model>-image.tar.gz from the run page and upload it with dafni/<model>/model-definition.yaml.
+# <model>-image.tar.gz from the run page and upload it with demonstrator/dafni/<model>/model-definition.yaml.
 name: Build DAFNI model images
 on:
   push:
@@ -14,15 +16,55 @@ jobs:
       matrix:
         model: [wind_damage, storm_cascade, figures]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build image
         run: docker build -f demonstrator/dafni/${{ matrix.model }}/Dockerfile -t dafni-${{ matrix.model }}:latest demonstrator
-      - name: Smoke test (entry point reachable)
+      - name: Smoke test (packages import)
         run: docker run --rm --entrypoint python dafni-${{ matrix.model }}:latest -c "import pypower, scipy, xarray, matplotlib, global_land_mask; print('ok')"
       - name: Save image
         run: docker save dafni-${{ matrix.model }}:latest | gzip > ${{ matrix.model }}-image.tar.gz
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.model }}-image
           path: ${{ matrix.model }}-image.tar.gz
           retention-days: 30
+
+  test:
+    name: End-to-end container test (Eunice2022, sample 297)
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      STORM: Eunice2022
+      SAMPLE: "297"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v6
+        with:
+          path: images
+      - name: Load images
+        run: for m in wind_damage storm_cascade figures; do docker load -i images/$m-image/$m-image.tar.gz; done
+      - name: Prepare /data as DAFNI mounts it
+        run: |
+          mkdir -p data/inputs
+          cp -r demonstrator/data/network demonstrator/data/era5 data/inputs/
+          chmod -R a+rwX data
+      - name: Run wind_damage container
+        run: docker run --rm -v $PWD/data:/data -e STORM -e N_SAMPLES=1000 -e SEED=42 dafni-wind_damage:latest
+      - name: Run storm_cascade container (previous outputs become inputs/results)
+        run: |
+          mkdir -p data/inputs/results && cp -r data/outputs/$STORM data/inputs/results/
+          docker run --rm -v $PWD/data:/data -e STORM -e SAMPLE dafni-storm_cascade:latest
+      - name: Run figures container
+        run: |
+          rm -rf data/inputs/results && mkdir -p data/inputs/results && cp -r data/outputs/$STORM data/inputs/results/
+          docker run --rm -v $PWD/data:/data -e STORM -e FIGURE_SAMPLE=$SAMPLE dafni-figures:latest
+      - name: Compare with the committed reference results
+        run: |
+          pip install -q pandas numpy
+          python demonstrator/dafni/test/compare_outputs.py $STORM $SAMPLE data/outputs demonstrator/results
+      - name: Keep the container outputs
+        uses: actions/upload-artifact@v5
+        with:
+          name: container-test-outputs
+          path: data/outputs
+          retention-days: 14
