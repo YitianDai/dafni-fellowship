@@ -210,6 +210,8 @@ def dcopf_solver_mp(om, ppopt, out_opt=None):
             )
             if res.status == 0 or res.status == 2:   # optimal, or genuinely infeasible: stop
                 break
+            print(f"  [dcopf] {_method}{' no-presolve' if _opts else ''} returned status {res.status} "
+                  f"({res.message.strip()}); retrying with the next method", flush=True)
 
         x       = res.x if res.x is not None else zeros(nxyz)
         f_val   = res.fun + C0 if res.fun is not None else 0.0
