@@ -13,6 +13,11 @@ print(f"wind_damage.csv: {len(ka)} failures identical")
 
 a = pd.read_csv(os.path.join(out, f"cascade_sample{k}.csv")); b = pd.read_csv(os.path.join(ref, f"cascade_sample{k}.csv"))
 assert list(a.columns) == list(b.columns) and len(a) == len(b), "cascade table shape differs"
+cols = ["h", "wind_failures", "cascade_trips", "cascade_branches", "new_dead_buses", "islands", "cascade_iterations", "disconnected_MW"]
+diff = (a[cols].fillna("").astype(str) != b[cols].fillna("").astype(str)).any(axis=1)
+if diff.any():
+    print("rows that differ (container):"); print(a.loc[diff, cols].to_string())
+    print("rows that differ (reference):"); print(b.loc[diff, cols].to_string())
 for c in a.columns:
     if c == "sec": continue
     if pd.api.types.is_numeric_dtype(a[c]):

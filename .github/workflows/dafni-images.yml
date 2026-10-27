@@ -63,6 +63,7 @@ jobs:
           pip install -q pandas numpy
           python demonstrator/dafni/test/compare_outputs.py $STORM $SAMPLE data/outputs demonstrator/results
       - name: Keep the container outputs
+        if: always()
         uses: actions/upload-artifact@v5
         with:
           name: container-test-outputs
