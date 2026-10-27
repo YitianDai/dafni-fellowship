@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+*.cdsapirc
+ceda_token.txt

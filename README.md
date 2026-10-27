@@ -10,4 +10,4 @@ Partners: [DAFNI](https://www.dafni.ac.uk/) · [UK Research and Innovation](http
 
 ---
 
-This repository holds the source of the Fellowship website (`index.html` and `assets/`), served by GitHub Pages from `main`.
+This repository holds the source of the Fellowship website (`index.html` and `assets/`), served by GitHub Pages from `main`, and the DAFNI demonstrator in [`demonstrator/`](demonstrator/): GB ETYS network cases for Storm Arwen (2021) and Storm Eunice (2022), the wind damage and DC cascading failure models, figure scripts, results and the DAFNI packaging (`demonstrator/dafni/`). The three DAFNI model images are built by GitHub Actions (`.github/workflows/dafni-images.yml`).

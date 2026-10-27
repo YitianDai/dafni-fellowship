@@ -1,0 +1,56 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: GB storm cascade (DCCFM)
+  name: gb-storm-cascade-dccfm
+  summary: Hour-by-hour DC cascading failure simulation of the GB transmission network under sampled wind damage.
+  description: >
+    For each hour with new wind damage: hourly demand and generator availability, carried network state,
+    pre-fault DC OPF (HiGHS), then the DC cascading failure model (per-island redispatch, overload tripping,
+    over-frequency generator tripping). Lost lines, buses, generators and disconnected demand persist to the
+    end of the window. One wind-damage sample (SAMPLE) or a range (SAMPLES_FIRST to SAMPLES_LAST) is run;
+    with neither set a random sample is drawn and its number printed.
+    Output: results/<storm>/cascade_sample<k>.csv and cascade_sample<k>_lostload.csv.
+  publisher: Yitian Dai, The University of Manchester
+  source_code: https://github.com/YitianDai/dafni-fellowship
+spec:
+  inputs:
+    parameters:
+      - name: STORM
+        title: Storm case
+        description: Folder name of the storm case, Arwen2021 or Eunice2022
+        type: string
+        default: Arwen2021
+        required: true
+      - name: SAMPLE
+        title: Wind-damage sample (blank = random)
+        type: integer
+        min: 0
+        required: false
+      - name: SAMPLES_FIRST
+        title: First sample of a range (ensemble runs)
+        type: integer
+        min: 0
+        required: false
+      - name: SAMPLES_LAST
+        title: Last sample of a range (ensemble runs)
+        type: integer
+        min: 0
+        required: false
+    dataslots:
+      - name: GB storm network cases
+        description: Hourly PYPOWER cases exported from PyPSA-GB (bus, branch, gen, load_Pd, gen_Pmax, GB_ETYS_<storm>.py), one folder per storm
+        path: inputs/network/
+        required: true
+      - name: Previous model outputs
+        description: results/<storm>/ written by the upstream model(s) in the workflow
+        path: inputs/results/
+        required: true
+  outputs:
+    datasets:
+      - name: "**/cascade_sample*.csv"
+        type: csv
+        description: One row per hour of the storm window with wind failures, cascade trips, dead buses, generators off and demand disconnected
+      - name: "**/cascade_sample*_lostload.csv"
+        type: csv
+        description: Demand disconnected per bus and hour (MW)

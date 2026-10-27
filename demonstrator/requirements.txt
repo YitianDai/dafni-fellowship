@@ -1,0 +1,11 @@
+# Python 3.11. numpy is pinned below 2.0 because pypower uses np.in1d (removed in NumPy 2.0).
+numpy>=1.24,<2.0
+pandas>=2.0
+scipy>=1.10
+pypower>=5.1.4
+networkx>=3.0
+xarray>=2023.1
+netCDF4>=1.6
+matplotlib>=3.7
+pillow>=10.0
+global-land-mask>=1.0

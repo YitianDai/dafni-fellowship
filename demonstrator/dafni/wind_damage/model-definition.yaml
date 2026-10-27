@@ -1,0 +1,49 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: GB storm wind damage
+  name: gb-storm-wind-damage
+  summary: Hourly Monte Carlo sampling of wind-induced overhead line failures from ERA5 gusts.
+  description: >
+    For every exposed overhead or mixed circuit the hourly effective gust is the ERA5 10 m gust scaled by the
+    attack angle to the line (IEC 60826 form, floor 0.5), maximised over the ERA5 cells the line crosses.
+    A lognormal fragility curve (mu 3.75, sigma 0.14) gives the hourly failure probability; N_SAMPLES failure
+    histories are drawn with seed SEED. Failures are permanent within the storm window.
+    Output: results/<storm>/wind_damage.csv (one row per failed line and sample, with the failure hour).
+  publisher: Yitian Dai, The University of Manchester
+  source_code: https://github.com/YitianDai/dafni-fellowship
+spec:
+  inputs:
+    parameters:
+      - name: STORM
+        title: Storm case
+        description: Folder name of the storm case, Arwen2021 or Eunice2022
+        type: string
+        default: Arwen2021
+        required: true
+      - name: N_SAMPLES
+        title: Monte Carlo samples
+        type: integer
+        default: 1000
+        min: 1
+        max: 10000
+        required: true
+      - name: SEED
+        title: Random seed
+        type: integer
+        default: 42
+        required: true
+    dataslots:
+      - name: GB storm network cases
+        description: Hourly PYPOWER cases exported from PyPSA-GB (bus, branch, gen, load_Pd, gen_Pmax, GB_ETYS_<storm>.py), one folder per storm
+        path: inputs/network/
+        required: true
+      - name: ERA5 storm fields
+        description: Hourly ERA5 10 m gust, 10 m wind components and mean sea level pressure over GB for each storm (era5_<storm>.nc)
+        path: inputs/era5/
+        required: true
+  outputs:
+    datasets:
+      - name: "**/wind_damage.csv"
+        type: csv
+        description: Sampled line failures per hour (storm, sample, branch id, failure hour, gust, probability)

@@ -1,0 +1,28 @@
+# Builds the three DAFNI model images and attaches them to the run as downloadable artifacts.
+# No local Docker needed: push to main (or run the workflow by hand under Actions), then download
+# <model>-image.tar.gz from the run page and upload it with dafni/<model>/model-definition.yaml.
+name: Build DAFNI model images
+on:
+  push:
+    branches: [main]
+    paths: ["demonstrator/models/**", "demonstrator/requirements.txt", "demonstrator/dafni/**", ".github/workflows/dafni-images.yml"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        model: [wind_damage, storm_cascade, figures]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -f demonstrator/dafni/${{ matrix.model }}/Dockerfile -t dafni-${{ matrix.model }}:latest demonstrator
+      - name: Smoke test (entry point reachable)
+        run: docker run --rm --entrypoint python dafni-${{ matrix.model }}:latest -c "import pypower, scipy, xarray, matplotlib, global_land_mask; print('ok')"
+      - name: Save image
+        run: docker save dafni-${{ matrix.model }}:latest | gzip > ${{ matrix.model }}-image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.model }}-image
+          path: ${{ matrix.model }}-image.tar.gz
+          retention-days: 30
