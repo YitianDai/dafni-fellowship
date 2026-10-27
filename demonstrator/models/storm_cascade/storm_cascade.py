@@ -39,6 +39,9 @@ from pypower.idx_brch import F_BUS, T_BUS, BR_STATUS
 
 STORMS = ["Arwen2021", "Eunice2022"]
 PPOPT = ppoption(VERBOSE=0, OUT_ALL=0, PF_DC=1)
+TIEBREAK = 1e-6   # GBP/MWh per generator index added to the linear cost so the dispatch LP has a unique optimum
+                  # (only 11 distinct marginal costs across ~3400 units otherwise; which optimum HiGHS returns then
+                  # depends on platform rounding, and at a line near its limit that changes the cascade)
 
 
 def get_case(storm):
@@ -103,7 +106,7 @@ def update_state(st, base, after, ng, branch_wind, h):
     return sorted(casc), sorted(new_dead), sorted(new_off)
 
 
-def run(storm, sample, verbose=False, rating_factor=1.0):
+def run(storm, sample, verbose=False, rating_factor=1.0, tiebreak=True):
     load_case, snaps = get_case(storm)
     out_dir = os.path.join(ROOT, "results", storm); os.makedirs(out_dir, exist_ok=True)
     wd = pd.read_csv(os.path.join(out_dir, "wind_damage.csv"))
@@ -121,6 +124,8 @@ def run(storm, sample, verbose=False, rating_factor=1.0):
     for h, snap in enumerate(snaps):
         full = load_case(h)                                   # that hour's demand and Pmax, intact network
         full["branch"][:, 5:8] *= rating_factor                # RATE_A/B/C scaling (test option; data files unchanged)
+        if tiebreak:                                          # unique LP optimum: +1e-6 GBP/MWh per generator index
+            full["gencost"][:, 5] += TIEBREAK * np.arange(1, full["gencost"].shape[0] + 1)
         pd_full = full["bus"][:, PD].copy(); pd_tot = pd_full.sum()
         ids = full["bus"][:, BUS_I].astype(int)
         wind_new = [b for b in wind_by_h.get(h, []) if b not in st["branches_out"]]
@@ -180,6 +185,7 @@ if __name__ == "__main__":
     ap.add_argument("--samples", type=int, nargs=2, metavar=("FIRST", "LAST"), default=None, help="run samples FIRST..LAST inclusive")
     ap.add_argument("--verbose", action="store_true", help="print CascadeSimulator iterations")
     ap.add_argument("--rating-factor", type=float, default=1.0, help="scale all branch ratings (e.g. 1.2 = +20%%)")
+    ap.add_argument("--no-tiebreak", action="store_true", help="do not add the 1e-6 x index cost tie-break")
     ap.add_argument("--root", default=None, help="repo root (default: two levels above this script)")
     a = ap.parse_args()
     bad = [x for x in a.storms if x not in STORMS]
@@ -187,6 +193,6 @@ if __name__ == "__main__":
     for s in a.storms:
         if a.samples:
             for k in range(a.samples[0], a.samples[1] + 1):
-                run(s, k, a.verbose, a.rating_factor)
+                run(s, k, a.verbose, a.rating_factor, not a.no_tiebreak)
         else:
-            run(s, a.sample, a.verbose, a.rating_factor)
+            run(s, a.sample, a.verbose, a.rating_factor, not a.no_tiebreak)

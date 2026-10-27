@@ -57,7 +57,9 @@ Or step by step: `models/wind_damage/wind_damage.py Arwen2021`, `models/storm_ca
   hour takes that hour's demand and generator availability, applies the carried state (lost lines, blacked-out buses,
   tripped generators, disconnected demand as a per-bus fraction), solves a pre-fault DC OPF (HiGHS) and runs the DC
   cascading failure model (per-island redispatch with 0.99 headroom, overload tripping at 101 % of rating, OFGT,
-  load shedding at 5000 GBP/MWh). Losses are permanent within the window.
+  load shedding at 5000 GBP/MWh). Losses are permanent within the window. Generator linear costs carry a tie-break
+  of 1e-6 GBP/MWh per generator index so the dispatch LP has a unique optimum and results are reproducible across
+  machines (PyPSA-GB gives only 11 distinct marginal costs across ~3400 units).
 
 ## Data sources
 
