@@ -15,7 +15,7 @@ a = pd.read_csv(os.path.join(out, f"cascade_sample{k}.csv")); b = pd.read_csv(os
 assert list(a.columns) == list(b.columns) and len(a) == len(b), "cascade table shape differs"
 for c in a.columns:
     if c == "sec": continue
-    if np.issubdtype(a[c].dtype, np.number):
+    if pd.api.types.is_numeric_dtype(a[c]):
         assert np.allclose(a[c].fillna(-1), b[c].fillna(-1), rtol=1e-6, atol=1e-6), f"column {c} differs"
     else:
         assert (a[c].fillna("").astype(str) == b[c].fillna("").astype(str)).all(), f"column {c} differs"
